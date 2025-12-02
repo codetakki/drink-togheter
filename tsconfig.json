@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./backend" },
+    { "path": "./client" }
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // These paths help your IDE resolve imports if you cross-reference later
+      "@server/*": ["server/src/*"],
+      "@client/*": ["client/src/*"]
+    }
+  }
+}

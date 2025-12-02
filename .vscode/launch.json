@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Debug backend (NestJS)",
+      "port": 9229,
+      "restart": true,
+      "cwd": "${workspaceFolder}/backend",
+      "preLaunchTask": "Start Backend (Debug)"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug Client (Chrome)",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client",
+      "sourceMapPathOverrides": {
+        "webpack:///./*": "${webRoot}/*"
+      },
+      "preLaunchTask": "Start Frontend (Vite)"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack: Debug All",
+      "configurations": ["Debug backend (NestJS)", "Debug Client (Chrome)"]
+    }
+  ]
+}
