@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-container fluid max-width="900">
+    <div>
       <router-view />
-    </v-container>
+    </div>
   </v-app>
 </template>
 

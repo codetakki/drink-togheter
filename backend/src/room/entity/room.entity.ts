@@ -3,12 +3,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('room-entity')
 export class RoomEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -22,7 +21,9 @@ export class RoomEntity {
   @CreateDateColumn()
   createdAt: string;
 
-  @OneToMany(() => UserEntity, (user) => user)
-  @JoinColumn()
+  @OneToMany(() => UserEntity, (user) => user.room, {
+    cascade: true,
+    eager: true,
+  })
   users: UserEntity[];
 }

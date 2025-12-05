@@ -6,7 +6,6 @@
 
 // Composables
 import { createVuetify } from 'vuetify'
-import Default from '@/layouts/default.vue'
 
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
@@ -15,12 +14,32 @@ import 'vuetify/styles'
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   theme: {
-    defaultTheme: 'system',
+    defaultTheme: 'dark',
   },
   defaults: {
-    global: {
+
+    VToolBar: {
+      rounded: 'none',
+    },
+    VBtn: {
+      variant: 'flat',
+      color: 'primary',
       rounded: 'lg',
-      variant: 'solo'
+
+    },
+    VTextField: {
+      variant: 'solo-filled',
+      density: 'comfortable',
+      rounded: 'lg',
+
+    },
+    VAutocomplete: {
+      variant: 'solo-filled',
+      density: 'comfortable',
+      rounded: 'lg',
+    },
+    VCard: {
+      rounded: 'lg',
     },
   },
 })

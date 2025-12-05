@@ -11,8 +11,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AddDrink: typeof import('./components/AddDrink.vue')['default']
+    AddPlayer: typeof import('./components/AddPlayer.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    DrinkForm: typeof import('./components/DrinkForm.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    PlayerCard: typeof import('./components/PlayerCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

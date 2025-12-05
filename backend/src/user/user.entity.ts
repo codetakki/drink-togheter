@@ -1,11 +1,5 @@
-import { DrinkEntity } from 'src/drink/drink.entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { RoomEntity } from 'src/room/entity/room.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UserEntity {
@@ -18,7 +12,8 @@ export class UserEntity {
   @Column()
   weightKg: number;
 
-  @OneToMany(() => DrinkEntity, (drink) => drink)
-  @JoinColumn()
-  drinks: DrinkEntity[];
+  @ManyToOne(() => RoomEntity, (room) => room.users)
+  room: RoomEntity;
+  // @JoinColumn({ name: 'drinks' })
+  // drinks: DrinkEntity[];
 }
