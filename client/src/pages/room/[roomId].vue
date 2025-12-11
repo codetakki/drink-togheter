@@ -1,7 +1,7 @@
 <template>
-  <div class="d-flex flex-column" style="overflow-y: hidden; height: 100vh;">
-
+  <div v-if="store.roomData" class="d-flex flex-column" style="overflow-y: hidden; height: 100vh;">
     <v-toolbar density="compact">
+      <template #prepend><v-btn color="default" icon="mdi-arrow-left" to="/" /></template>
       <v-toolbar-title :text="store.roomData?.name" />
       <AddPlayer :room-code="store.roomData?.code" @done="store.fetchRoom()" />
     </v-toolbar>
@@ -16,6 +16,18 @@
       </v-card-text>
     </v-card>
   </div>
+  {{ store.roomData }}
+  <template v-if="!store.roomData">
+    <div class="w-100 d-flex flex-column align-center justify-center" style="overflow-y: hidden; height: 100vh;">
+      <div v-if="!store.isFetching">
+        <div class="text-h4 mb-5">No room with code {{ store.roomCode }} found </div>
+        <v-btn size="x-large" to="/">Back to start</v-btn>
+      </div>
+      <div v-else>
+        <v-progress-circular indeterminate :size="82" :width="9" />
+      </div>
+    </div>
+  </template>
 </template>
 
 <script setup lang="ts">

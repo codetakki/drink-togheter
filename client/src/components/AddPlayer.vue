@@ -1,13 +1,13 @@
 <template>
   <v-dialog v-model="showDialog">
     <template #activator="{props}">
-      <v-btn v-bind="props" icon="mdi-account-plus-outline" />
+      <v-btn v-bind="props" color="default" icon="mdi-account-plus-outline" />
     </template>
     <template #default>
       <v-card color="surface" title="Add Player">
         <v-card-text>
           <player-form v-model="user" />
-          <v-btn @click="addPlayer">Add User</v-btn>
+          <v-btn block @click="addPlayer">Add User</v-btn>
         </v-card-text>
       </v-card>
     </template>

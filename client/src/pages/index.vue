@@ -1,9 +1,24 @@
 <template>
-  <v-text-field v-model="roomCode" label="Room code" />
-  <v-btn block @click="router.push('/room/'+roomCode)">Join room</v-btn>
-  or
-  <v-btn block color="primary" variant="outlined" @click="createRoom()">Create Room</v-btn>
-  <pre>{{ data }}</pre>
+  <div class="d-flex align-center justify-center" style="height: 100vh;">
+    <v-card min-width="300" subtitle="Track drinks and alcohol consumption together" title="Drink together">
+      <v-card-text>
+        <v-form v-model="formValid" @submit.prevent="joinRoom()">
+          <v-text-field v-model="roomCode" label="Room code" :rules="[(v) => !!v || v.length > 0 || 'Room code required']" />
+          <v-btn block type="submit">Join room</v-btn>
+        </v-form>
+        <v-divider class="my-6">
+          <template #default>OR</template>
+        </v-divider>
+        <v-btn
+          block
+          color="primary"
+          :loading="isFetching"
+          variant="outlined"
+          @click="createRoom()"
+        >Create Room</v-btn>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -11,7 +26,7 @@
   import { appFetch } from '@/stores/app'
   const roomCode = ref<string>('')
   const router = useRouter()
-  const { execute: createRoom }
+  const { execute: createRoom, isFetching }
     = appFetch('/room/create', {
       afterFetch: ctx => {
         console.log(ctx)
@@ -21,5 +36,10 @@
       immediate: false,
     },
     ).post().json()
-  const { data } = appFetch('/room', { immediate: true })
+
+  const formValid = ref(false)
+  function joinRoom () {
+    if (!formValid.value) return
+    router.push('/room/' + roomCode.value)
+  }
 </script>

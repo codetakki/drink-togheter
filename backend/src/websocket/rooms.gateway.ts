@@ -14,6 +14,7 @@ import { Server, Socket } from 'socket.io';
   cors: {
     origin: '*',
   },
+  path: '/api/socket/',
 })
 export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()

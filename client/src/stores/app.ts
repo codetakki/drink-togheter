@@ -12,7 +12,7 @@ export const appFetch = createFetch({
 })
 export const useAppStore = defineStore('app', {
   state () {
-    const socket = io('http://localhost:3000')
+    const socket = io(url, { path: '/api/socket/' })
     socket.on('connect', () => {
       console.log('Connected with ID:', socket.id)
       roomChange()
@@ -47,7 +47,7 @@ export const useAppStore = defineStore('app', {
       return 'room/' + roomCode.value || ''
     })
 
-    const { data: roomData, execute: fetchRoom } = appFetch<Room>(
+    const { data: roomData, execute: fetchRoom, isFetching } = appFetch<Room>(
       roomUrl, { refetch: true, immediate: true },
     ).get().json<Room>()
 
@@ -58,6 +58,7 @@ export const useAppStore = defineStore('app', {
       roomData,
       roomCode,
       fetchRoom,
+      isFetching,
     }
   },
 })
