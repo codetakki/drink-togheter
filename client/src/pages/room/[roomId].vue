@@ -1,5 +1,5 @@
 <template>
-  <div v-if="store.roomData" class="d-flex flex-column" style="overflow-y: hidden; height: 100vh; max-height: 100%;">
+  <div v-if="store.roomData" class="d-flex flex-column" style="overflow-y: hidden; height: 100%;">
     <v-toolbar density="compact">
       <template #prepend><v-btn color="default" icon="mdi-arrow-left" to="/" /></template>
       <v-toolbar-title :text="'Room: ' + store.roomData?.code">
