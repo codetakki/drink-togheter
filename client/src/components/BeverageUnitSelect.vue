@@ -28,7 +28,9 @@
   const selectedUnit = computed(() => {
     return beverageUnits.find(unit => unit.mlAmount == mlAmount.value)
   })
-
+  onMounted(() => {
+    mlAmount.value = beverageUnits[0].mlAmount
+  })
   const beverageUnits = [
     {
       name: 'Burk',

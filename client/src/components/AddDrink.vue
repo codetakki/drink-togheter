@@ -34,7 +34,7 @@
 
   const show = ref(false)
   const validForm = ref(false)
-  const drink = ref<Partial<DrinkEntity>>({})
+  const drink = ref<Partial<DrinkEntity>>({ amountMl: 330 })
   const participatingPlayers = ref<Player['id'][]>([])
   const emit = defineEmits(['done'])
   const _props = defineProps(
@@ -54,6 +54,7 @@
   const { execute: sendFormRequest, isFetching } = appFetch('/room/add-drinks', { immediate: false, afterFetch (ctx) {
     emit('done')
     show.value = false
+    drink.value = { amountMl: 330 }
     return ctx
   } })
     .post(() => {
